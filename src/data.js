@@ -34,8 +34,6 @@ const genderAll = (array) => {
   return new Set(newArrGender);
 
 }
-
-
 const filterByTeamFunc = (teamSelected) => {/*funcion que me retorna una funcion los atletas de un pais 
   que sean igual al valor del select */
   return (athlete) => athlete.team == teamSelected;
@@ -192,7 +190,7 @@ const computeDataTwo = (datos) => {
       gold: value.gold,
       silver: value.silver,
       bronce: value.bronze,
-      otal: value.total
+      total: value.total
     };
     arrayAthletes.push(totalMedalByAthletes);
 
