@@ -81,6 +81,26 @@ it ('deberia retornar cuantos atletas por el pais "France', ()=>{
   expect (testFunctionAll.length).toBe(1);
 });
 
+describe('probando la funcion sortData', () => {
+
+  it('is a function', () => {
+    expect(typeof computeData).toBe('function');
+  });
+  it ('Deberia retornar 2 para Bronze', () =>{
+    const mockResult = computeData('Bronze', mockData)
+    expect(mockResult.CAN).toEqual(2);
+  });
+  it('No deberia ser Null', () => {
+    expect(computeData).not.toBeNull();
+  });
+});
+describe('probando la funcion computeDataTwo', () => {
+  it('is a function', () => {
+    expect(typeof computeDataTwo).toBe('function');
+  }); 
+  
+});
+
 it ('deberia ordenar atletas de manera descendente',() => {
   
   let arrayTest2 =[ {
@@ -127,21 +147,3 @@ it ('deberia ordenar atletas de manera descendente',() => {
   expect (testSortData[2].name).toBe("Julio");
 });
 
-
-describe('probando la funcion computeDataTwo', () => {
-  it('is a function', () => {
-    expect(typeof computeDataTwo).toBe('function');
-  });   
-});
-describe('probando la funcion computeData', () => {
-  it('is a function', () => {
-    expect(typeof computeData).toBe('function');
-  });
-  it ('Deberia retornar 2 para Bronze', () =>{
-    const mockResult = computeData('Bronze', mockData)
-    expect(mockResult.medal).toBe(2);
-  });
-  it('No deberia ser Null', () => {
-    expect(computeData).not.toBeNull();
-  });
-});
