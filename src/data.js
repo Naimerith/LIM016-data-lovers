@@ -24,6 +24,7 @@ const genderAll = (array) => {
   });
   return new Set(newArrGender);
 }
+
 //FILTRAR ATLETAS POR PAIS
 const filterByTeamFunc = (teamSelected) => {
   return (athlete) => athlete.team == teamSelected;

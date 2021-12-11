@@ -12,6 +12,7 @@ html, body {
     height: 100%;
 }
 
+
 .imgHeader {
     display: flex;
     width: 100%;
@@ -61,7 +62,9 @@ html, body {
     color: #ffffffc9;
 }
 
+
 /* -------CARRUSEL DE FOTOS-------*/
+
 .carouselContainer {
     margin: auto;
     width: 100%;
@@ -349,9 +352,7 @@ select:hover {
 
 .nameAthlete {
     text-align: center;
-    font-size: 20px;
-    background: white;
-    border-radius: 20px;
+    font-size: 15px;
     font-family: 'Handlee', cursive;
     font-weight: bold;
     color: #00133A;
@@ -428,6 +429,7 @@ footer {
     height: 100px;
     justify-content: space-around;
     padding: 0.5rem 0;
+
 }
 
 .copyright p {

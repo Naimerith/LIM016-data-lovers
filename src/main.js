@@ -1,5 +1,6 @@
 import datos from "./data/athletes/athletes.js";
 import {
+
   genderAll,
   filterByTeamFunc,
   filterBySportFunc,
@@ -48,6 +49,7 @@ const searchingAth = () => {
 }
 search.addEventListener("keyup", searchingAth);
 
+
 //REFRESCAR LA PAG CON EL HEADER
 header.addEventListener('click', reload);
 
@@ -62,28 +64,28 @@ for (let x = 0; x < arrayGender.length; x++) {
 
 //PLANTILLA DE ATLETAS
 const generateAthleteTemplate = (athlete) => {
-  const athletegender =
-    athlete.gender === "F"
-      ? "./imagenes/femolimpi.PNG"
-      : "./imagenes/atletasmasculinos.jpg";
+
+  const athletegender = athlete.gender === "F" ? "./imagenes/femolimpi.PNG" : "./imagenes/atletasmasculinos.jpg"
   return `<article class="sportsContainer">
-    <h1 class="nameAthlete">${athlete.name}</h1>
-    <section class="infoAthlete">
-      <figure class="boxImgAthlete">
-          <img class="classAthlete" src= ${athletegender}>
-      </figure>
-      <section class="tableAthletes">
-            <p> Genero: ${athlete.gender}</p>
-            <p> Altura: ${athlete.height}</p>
-            <p> Deporte: ${athlete.sport}</p>
-            <p> Peso: ${athlete.weight}</p>
-            <p> Pais: ${athlete.team}</p>
-            <p> Edad: ${athlete.age}</p>
-            <p> Medalla: ${athlete.medal}</p>     
-      </section>
-    </section>  
-  </article>`;
-};
+  
+      <h1 class="nameAthlete">${athlete.name}</h1>
+      <section class="infoAthlete">
+        <figure class="boxImgAthlete">
+            <img class="classAthlete" src= ${athletegender}>
+        </figure>
+        <section class="tableAthletes">
+              <p> Genero: ${athlete.gender}</p>
+              <p> Altura: ${athlete.height}</p>
+              <p> Deporte: ${athlete.sport}</p>
+              <p> Peso: ${athlete.weight}</p>
+              <p> Pais: ${athlete.team}</p>
+              <p> Edad: ${athlete.age}</p>
+              <p> Medalla: ${athlete.medal}</p>     
+        </section>
+      </section>  
+    </article>`
+}
+
 
 // RETORNAMOS PLANTILLA DE OPCIONES DEL FILTRO
 const generateOptionTemplate = (arrayF) => {
@@ -101,9 +103,11 @@ const insertHtmArray = (elemet, htmlArray) => {
 
 //INSERTAMOS LOS ATLETAS EN HMTL
 const insertHtmlAtheles = (htmlAthletes) => {
+
   const grid = document.getElementById("gridForTest");
   grid.innerHTML = htmlAthletes;
 };
+
 
 //GENERAMOS LAS OPCIONES PARA EL FILTRO DE PAISES Y DEPORTES
 let htmlCountrie = arrayCountries.map(generateOptionTemplate).join("");
@@ -113,6 +117,7 @@ insertHtmArray(sport, htmlSport);
 
 let filtersToSort = []; 
 
+
 //TODOS LOS FILTRO SEGUN LA ACCION DEL USUARIO 
 const functionFilterGrouping = () => {
   const sportSelected = sport.value; 
@@ -120,27 +125,24 @@ const functionFilterGrouping = () => {
   const genderSelected = gender.value;
   let filteredAthletes = arrayAthletes; 
 
+
   if (teamSelected !== "todos") {
-    filteredAthletes = functionAll(
-      filteredAthletes,
-      filterByTeamFunc(teamSelected)
-    );
+
+    filteredAthletes = functionAll(filteredAthletes, filterByTeamFunc(teamSelected));
+
   }
   if (sportSelected !== "todos") {
-    filteredAthletes = functionAll(
-      filteredAthletes,
-      filterBySportFunc(sportSelected)
-    );
+
+    filteredAthletes = functionAll(filteredAthletes, filterBySportFunc(sportSelected));
+
   }
   if (genderSelected != "todos") {
-    filteredAthletes = functionAll(
-      filteredAthletes,
-      filterByGender(genderSelected)
-    );
+
+    filteredAthletes = functionAll(filteredAthletes, filterByGender(genderSelected));
   }
 
   filtersToSort = filteredAthletes;
-  insertHtmlAtheles(filteredAthletes.map(generateAthleteTemplate).join(""));
+  insertHtmlAtheles(filteredAthletes.map(generateAthleteTemplate).join(''));
 
   document.getElementById("containerFatherMain").style.display = "none"; 
   document.getElementById("carousel").style.display = "none";
@@ -148,12 +150,14 @@ const functionFilterGrouping = () => {
   document.getElementById("tableMedalsModal").style.display = "none";
   document.getElementById("close").style.display = "none";
 
+
   //MENSAJE QUE INDICA QUE NO EXISTE ATLETA PARA LA SELECCION 
   if (filteredAthletes == 0) {
-    document.getElementById("error").style.display = "flex";
+    document.getElementById('error').style.display = 'flex';
   } else {
-    document.getElementById("error").style.display = "none";
+    document.getElementById('error').style.display = 'none';
   }
+
 };
 team.addEventListener("change", functionFilterGrouping);
 sport.addEventListener("change", functionFilterGrouping);
@@ -173,11 +177,11 @@ orderBySelect.addEventListener("change", (event) => {
   }
   if (sortByValue === "2") {
     let athleteSortByName = sortData(filtersToSort, sortByName, true);
-    insertHtmlAtheles(athleteSortByName.map(generateAthleteTemplate).join(""));
+    insertHtmlAtheles(athleteSortByName.map(generateAthleteTemplate).join(''));
   }
   if (sortByValue === "3") {
     let sortByNameReverse = sortData(filtersToSort, sortByName, false);
-    insertHtmlAtheles(sortByNameReverse.map(generateAthleteTemplate).join(""));
+    insertHtmlAtheles(sortByNameReverse.map(generateAthleteTemplate).join(''));
   }
 });
 
@@ -187,6 +191,7 @@ function topOfMedals(element, array) {
   let tableBody = document.createElement("tbody"); 
   for (let i = 0; i < array; i++) { 
     const posititionTable = tableMedals[i]; 
+
     let row = document.createElement("tr");
     let td = document.createElement("td");
     td.innerHTML = posititionTable.team;
@@ -204,10 +209,12 @@ function topOfMedals(element, array) {
     td.innerHTML = posititionTable.total;
     row.appendChild(td);
     tableBody.appendChild(row);
+
   }
   element.appendChild(tableBody);
 }
 topOfMedals(tableRankingTeam, 10);
+
 
 button.addEventListener("click", function () {
   topOfMedals(modalTable, tableMedals.length);
@@ -220,23 +227,21 @@ buttonClose.addEventListener("click", reload);
 
 //ATLETAS DESTACADOS
 let featuredAthletes = computeData(arrayAthletes, "name");
+
 function generateTemplate(element, position) {
-  const imageMedal = document.createElement("div");
+
+  const imageMedal = document.createElement('div');
   imageMedal.classList.add("imageMedal");
   imageMedal.innerHTML = '<img src="./imagenes/medallas.png" />';
   element.appendChild(imageMedal);
 
-  const medalfeatureAthlete = document.createElement("p");
+  const medalfeatureAthlete = document.createElement('p');
   medalfeatureAthlete.classList.add("medalFeatureAthletes");
-  medalfeatureAthlete.innerHTML =
-    featuredAthletes[position].gold +
-    " " +
-    featuredAthletes[position].silver +
-    " " +
-    featuredAthletes[position].bronce;
+  medalfeatureAthlete.innerHTML = featuredAthletes[position].gold + " " + featuredAthletes[position].silver + " " + featuredAthletes[position].bronce;
   element.appendChild(medalfeatureAthlete);
 
   const nameAthlete = document.createElement("p");
+
   nameAthlete.classList.add("nameAthlete");
   nameAthlete.innerHTML = featuredAthletes[position].name;
   element.appendChild(nameAthlete);
@@ -255,6 +260,7 @@ generateTemplate(document.getElementById("ten"), 9);
 //BOTON DE VOLVER ARRIBA
 function goTop(pxPantalla) { 
   window.addEventListener("scroll", () => { 
+
     let scroll = document.documentElement.scrollTop;
     let buttonTop = document.getElementById("btnArriba");
     if (scroll > pxPantalla) {
@@ -262,7 +268,7 @@ function goTop(pxPantalla) {
     } else {
       buttonTop.style.right = -10 + "rem";
     }
-  });
+  })
 }
 goTop(1000);
 

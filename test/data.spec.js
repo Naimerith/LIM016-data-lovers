@@ -124,3 +124,4 @@ describe('probando la funcion computeData', () => {
     expect(mockResult[0].total).toEqual(3);
   });
 });
+
