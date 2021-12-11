@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Handlee&display=swap');
 @import url('//db.onlinewebfonts.com/c/09de1f56f82933ed8124b02222d46188?family=Rio2016');
+
 * {
     margin: 0%;
     padding: 0%;
@@ -7,11 +8,10 @@
     /*para mover el modelo de caja*/
 }
 
-/*
-body {
-counter-reset: none;
+html, body {
+    height: 100%;
 }
-*/
+
 
 .imgHeader {
     display: flex;
@@ -24,10 +24,44 @@ counter-reset: none;
     font-family: "Rio2016";
     font-size: 30px;
     color: #f8f7f7;
-    ;
     margin-left: 30px;
     margin-top: -80px;
 }
+
+/*BUSCADOR*/
+.containerSearch {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #00133A;
+    height: 50px;
+    width: 100%;
+}
+
+.search {
+    border: none;
+    background: none;
+    outline: none;
+    color: black;
+    font-size: 20px;
+    line-height: 60px;
+    transition: .3s;
+    width: 0%;
+}
+
+.search:focus {
+    color: white;
+}
+
+#i {
+    font-size: 20px;
+    color: white;
+}
+
+::placeholder {
+    color: #ffffffc9;
+}
+
 
 /* -------CARRUSEL DE FOTOS-------*/
 
@@ -68,7 +102,6 @@ ul.sliderImg li img {
     width: 90%;
     height: 500px;
     margin-left: 5%;
-    /*object-fit: cover;*/
 }
 
 .txt {
@@ -131,11 +164,9 @@ ul.sliderImg li:target {
 }
 
 .betterWorld {
-    max-width: 50rem;
+    max-width: 50rem; /* lo maximo que tiene disponible paraagrandar la imagen*/
     max-height: 20.5rem;
     display: flex;
-    /* lo maximo que tiene disponible paraagrandar la imagen*/
-    /* lo maximo que tiene disponible paraagrandar la imagen*/
 }
 
 .mascotaTabla {
@@ -157,18 +188,13 @@ ul.sliderImg li:target {
 #bigTable {
     display: none;
     bottom: 20px;
-    /* background-image: url(./imagenes/mascotas.png.jpeg);
-    background-size: 100% 100%;
-    opacity: 0.3; */
 }
 
 .tableMedalsModal {
     border: none;
     width: 30rem;
-    height: 40rem;
-    /*Altura de la tabla*/
-    border-collapse: collapse;
-    /*Para que las celdas se unan*/
+    height: 40rem; /*Altura de la tabla*/
+    border-collapse: collapse; /*Para que las celdas se unan*/
     font-family: 'Handlee', cursive;
     text-align: center;
     width: 80%;
@@ -179,43 +205,35 @@ ul.sliderImg li:target {
 
 .divOfFeatureAthletes {
     display: flex;
-    /*flex-direction: column;*/
 }
 
 .tableMedals {
     border: none;
-    /*Altura de la tabla*/
     border-collapse: collapse;
-    /*Para que las celdas se unan*/
     font-family: 'Handlee', cursive;
 }
 
-caption, .titleFeaturedAthletes {
-    /*Esto es la leyenda (Titulo)*/
+caption, .titleFeaturedAthletes { /*Esto es la leyenda (Titulo)*/
     font-size: 30px;
     font-family: 'Handlee', cursive;
     color: #325665;
 }
 
-.tableMedals th {
-    /*Esto es el encabezado de la tabla*/
+.tableMedals th {  /*Esto es el encabezado de la tabla*/
     font-size: 20px;
     padding: 1px 10px;
     border-bottom: 1px solid #23a4c3;
     color: #325665;
-    background-color: rgba(255, 255, 255, 0.6);
-    /* En este caso sería color de fondo blanco con 85% de transparencia.*/
+    background-color: rgba(255, 255, 255, 0.6);  /* En este caso sería color de fondo blanco con 85% de transparencia.*/
 }
 
-.tableMedals td {
-    /*Esto es cada celda*/
+.tableMedals td {/*Esto es cada celda*/
     font-size: 20px;
     color: #050505;
     padding: 1px 10px;
     border: 1px solid #23a4c3;
     font-weight: 850;
     background-color: rgba(255, 255, 255, 0.6);
-    /* En este caso sería color de fondo blanco con 85% de transparencia.*/
 }
 
 .buttonMedals {
@@ -250,7 +268,6 @@ button:hover {
 
 .filterContainer {
     background-color: #00133A;
-    /*margin: auto;*/
     height: 6vw;
     display: flex;
     justify-content: space-between;
@@ -270,9 +287,6 @@ button:hover {
 label {
     font-family: 'Handlee', cursive;
     justify-self: center;
-    /*font-size: 15px;*/
-    /*width: 200px;*/
-    /*margin-right: 10px;*/
     color: #f8f7f7;
     font-weight: bold;
 }
@@ -290,8 +304,7 @@ select:hover {
     background-color: #F4D63A;
 }
 
-/*----------*/
-
+/*----mensaje de error------*/
 .error2 {
     display: none;
     flex-direction: column;
@@ -311,15 +324,11 @@ select:hover {
     align-self: center;
 }
 
-/*----------*/
+/*----Atletas Destacados------*/
 
 .featureAthletes {
     width: 50%;
 }
-
-/*.f-a {
-    width: 25vw;
-}*/
 
 .photoAthletes {
     float: left;
@@ -338,8 +347,6 @@ select:hover {
 .imageMedal img {
     top: 4rem;
     width: 8rem;
-    /*background-image: url(./imagenes/medallas.png);
-background-repeat: no-repeat;*/
     background-size: 70% 70%;
 }
 
@@ -352,8 +359,7 @@ background-repeat: no-repeat;*/
     width: min-content;
     width: 20vw;
     padding: 2px 5px;
-    white-space: normal;
-    /*ajusta el texto*/
+    white-space: normal;/*ajusta el texto*/
     margin: 1rem;
 }
 
@@ -367,7 +373,6 @@ background-repeat: no-repeat;*/
     box-sizing: border-box;
     background-repeat: round;
     background-size: contain;
-    /*background-position: center;*/
     border-radius: 20px;
     height: fit-content;
     width: fit-content;
@@ -383,8 +388,7 @@ background-repeat: no-repeat;*/
 
 p {
     font-family: 'Handlee', cursive;
-    font-weight: bold;
-    /*grueso de letras*/
+    font-weight: bold;/*grueso de letras*/
 }
 
 .classAthlete {
@@ -397,7 +401,6 @@ p {
     align-self: center;
     justify-content: center;
     margin: 0.5em;
-    /*border-radius: 20px;*/
 }
 
 .tableAthletes {
@@ -418,19 +421,24 @@ p {
 }
 
 footer {
-    background-color: #00133A;
-    color: #f8f7f7;
-    text-align: center;
-    padding: 0.5rem 0;
-    font-size: 15px;
     position: static;
+    bottom: 0;
+    background-color: #00133A;
+    color: white;
+    width: 100%;
+    height: 100px;
+    justify-content: space-around;
+    padding: 0.5rem 0;
+
 }
 
-/*Boton volver Arriba*/
+.copyright p {
+    text-align: center;
+}
 
+/*-----------Boton volver Arriba----------*/
 .btnArriba {
-    position: fixed;
-    /*posicion fija*/
+    position: fixed;/*posicion fija*/
     width: 4.5rem;
     height: 3rem;
     bottom: 6rem;
@@ -445,6 +453,10 @@ footer {
     background: #00133A;
     height: 50px;
     width: 100%;
+}
+
+.containerSearch:hover>.search {
+    width: 190px;
 }
 
 .search {
@@ -484,4 +496,84 @@ footer {
 li:hover {
     background-color: #adc0e6;
     cursor: pointer;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .filterContainer {
+        display: flex;
+        flex-direction: column;
+        background: #ffffff;
+        max-width: 50%;
+        margin-left: 40px;
+        margin-top: none;
+    }
+
+    label {
+        color: #00133A;
+        font-size: 20px;
+    }
+
+    .filterTeamAndSport {
+        background: lightgrey;
+    }
+
+    .containerQuery {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 20px;
+        height: 350px;
+        background: lightgrey;
+    }
+
+    .containerFatherMain {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .smallTable {
+        align-self: center;
+        width: 90%;
+    }
+
+    .containerSearch {
+        margin-top: 120px;
+        border-radius: 20px;
+        width: 40%;
+    }
+
+    select {
+        height: 30px;
+        width: 280px;
+    }
+
+    .featureAthletes {
+        align-self: center;
+        background: lightgrey;
+    }
+
+    .error2 {
+        margin-top: 140px;
+        margin-bottom: 350px;
+    }
+
+    .photoAthletes {
+        margin-left: 50px;
+        margin-top: 40px;
+    }
+
+    .titleFeaturedAthletes {
+        font-size: 45px;
+    }
+
+    .sportsContainer {
+        width: 50%;
+    }
+
+    .tableAthletes {
+        font-size: 25px;
+    }
+
+    .classAthlete {
+        max-width: 150px;
+    }
 }
