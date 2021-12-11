@@ -4,7 +4,6 @@ import {
   filterByTeamFunc,
   filterBySportFunc,
   filterByGender,
-  computeDataTwo,
   functionAll,
   sortData,
   sortByAge,
@@ -12,8 +11,8 @@ import {
   allCountries,
   allSport,
   computeData,
-  reload
 } from "./data.js";
+
 const arrayAthletes = datos.athletes;//aqui guardo la data de todos los atletas
 const arrayCountries = sortData(Array.from(allCountries(arrayAthletes))).reverse();//array de paises
 const arraySport = sortData(Array.from(allSport(arrayAthletes))).reverse();// array de dportes
@@ -28,9 +27,9 @@ const modalTable = document.getElementById("tableMedalsModal");
 const button = document.getElementById("buttonMedals"); //accedo al boton de ver mas 
 const search = document.getElementById('search');
 
-//codigo para crear el buscador
-const searchingAth = () =>{
-let search2 = search.value.toLowerCase();
+//BUSCADOR
+const searchingAth = () => {
+  let search2 = search.value.toLowerCase();
   const searching = arrayAthletes.filter(athlete => {
     return athlete.name.toLowerCase().includes(search2);
   });
@@ -47,23 +46,21 @@ let search2 = search.value.toLowerCase();
     }
   }
 }
-
 search.addEventListener("keyup", searchingAth);
 
-//refrescado de la pagina dando click al header
+//REFRESCAR LA PAG CON EL HEADER
 header.addEventListener('click', reload);
 
-// codigo para crear las opciones de genero
-
-let g = Array.from(genderAll(arrayAthletes));
-for (let x = 0; x < g.length; x++) {
+//FILTRO POR GENERO
+let arrayGender = Array.from(genderAll(arrayAthletes));
+for (let x = 0; x < arrayGender.length; x++) {
   let optionGender = document.createElement("option");
-  optionGender.value = g[x];
-  optionGender.innerHTML = g[x];
+  optionGender.value = arrayGender[x];
+  optionGender.innerHTML = arrayGender[x];
   containerGender.gender.appendChild(optionGender);
 }
 
-
+//PLANTILLA DE ATLETAS
 const generateAthleteTemplate = (athlete) => {
   const athletegender =
     athlete.gender === "F"
@@ -88,48 +85,41 @@ const generateAthleteTemplate = (athlete) => {
   </article>`;
 };
 
-// funcion que retorna plantilla de  optiones de los filtros
+// RETORNAMOS PLANTILLA DE OPCIONES DEL FILTRO
 const generateOptionTemplate = (arrayF) => {
   return `<option value="${arrayF}"> ${arrayF} </option> `;
 };
-// variable que tiene al opcion predeterminada de los select
+// variable que tiene al option predeterminado de los select
 const OptionselectedTemplate = `<option value="todos" selected="selected"> Todos </option>`;
 
-
-//funcion para insertar las opciones de los dos select en html
+//INSERTAMOS OPCIONES DE LOS SELECT EN HTML 
 const insertHtmArray = (elemet, htmlArray) => {
   elemet.innerHTML =
     OptionselectedTemplate +
-    htmlArray; /*aqui voy a insertar mi plantilla que esta
- en generateOptionTemplate*/
+    htmlArray; 
 };
 
-//funcion para insertar los atletas en mi web.En mi id"gridForTest" inserto con innerHTML.
+//INSERTAMOS LOS ATLETAS EN HMTL
 const insertHtmlAtheles = (htmlAthletes) => {
   const grid = document.getElementById("gridForTest");
-  grid.innerHTML = htmlAthletes; /*aqui voy a insertar mi plantilla que esta
-   en generateAthleteTemplate*/
+  grid.innerHTML = htmlAthletes;
 };
 
-//aqui genero la lista de opciones para el filtro de paises y deportes.
+//GENERAMOS LAS OPCIONES PARA EL FILTRO DE PAISES Y DEPORTES
 let htmlCountrie = arrayCountries.map(generateOptionTemplate).join("");
 insertHtmArray(team, htmlCountrie);
 let htmlSport = arraySport.map(generateOptionTemplate).join("");
 insertHtmArray(sport, htmlSport);
 
-let filtersToSort =
-  []; /*esta varieble la utilizo para guardar todos los filtros realizados y 
-utilizarlos para ordenar.*/
+let filtersToSort = []; 
 
-//funcion que trabaja con todos los filtros.
+//TODOS LOS FILTRO SEGUN LA ACCION DEL USUARIO 
 const functionFilterGrouping = () => {
-  const sportSelected = sport.value; //*guardo el valor(la accion del usuario)
-  const teamSelected = team.value; //*guardo el valor(la accion del usuario)
+  const sportSelected = sport.value; 
+  const teamSelected = team.value; 
   const genderSelected = gender.value;
-  let filteredAthletes = arrayAthletes; // arreglo local con el que voy a filtrar sin dañar mi arreglo original.
+  let filteredAthletes = arrayAthletes; 
 
-  /* uso condicionales para comparar: si el valor de mis dos select es igual igual a "todos" se mostrara 
-   la data completa sin filtrar  y con un map nos debuelve el arreglo modificado con la platilla de los atletas */
   if (teamSelected !== "todos") {
     filteredAthletes = functionAll(
       filteredAthletes,
@@ -152,13 +142,13 @@ const functionFilterGrouping = () => {
   filtersToSort = filteredAthletes;
   insertHtmlAtheles(filteredAthletes.map(generateAthleteTemplate).join(""));
 
-  document.getElementById("containerFatherMain").style.display = "none"; //ocultamos
-  document.getElementById("carousel").style.display = "none"; //ocultamos
-  document.getElementById("displayOrder").style.display = "block"; //mostramos
+  document.getElementById("containerFatherMain").style.display = "none"; 
+  document.getElementById("carousel").style.display = "none";
+  document.getElementById("displayOrder").style.display = "block"; 
   document.getElementById("tableMedalsModal").style.display = "none";
   document.getElementById("close").style.display = "none";
 
-  //mensaje para indicar que no existe el atleta.
+  //MENSAJE QUE INDICA QUE NO EXISTE ATLETA PARA LA SELECCION 
   if (filteredAthletes == 0) {
     document.getElementById("error").style.display = "flex";
   } else {
@@ -168,66 +158,51 @@ const functionFilterGrouping = () => {
 team.addEventListener("change", functionFilterGrouping);
 sport.addEventListener("change", functionFilterGrouping);
 gender.addEventListener("change", functionFilterGrouping);
-//orderBySelect es donde se encuentra el select de mis opciones para ordenar.
+
 orderBySelect.addEventListener("change", (event) => {
   const sortByValue =
     event.target
-      .value; /*guardo el eveto(la accion del usuario), su target y el valor que le puse*/
+      .value; 
   if (sortByValue === "1") {
-    //lo comparo
-    //Aqui utilizo mi funcion sortData para ordenar mi arreglo original "arrayAthletes", le paso mi
-    //funcion de comparacion "sorByAge" y le indico la ordenacion que es ascendente con "true"
-
     let athleteSortByAge = sortData(
       filtersToSort,
       sortByAge,
       true
-    ); /*utilizo como argumento mi nuevo 
-    arreglo que converti en string.*/
+    ); 
     insertHtmlAtheles(athleteSortByAge.map(generateAthleteTemplate).join(""));
   }
-
   if (sortByValue === "2") {
     let athleteSortByName = sortData(filtersToSort, sortByName, true);
     insertHtmlAtheles(athleteSortByName.map(generateAthleteTemplate).join(""));
   }
-
   if (sortByValue === "3") {
     let sortByNameReverse = sortData(filtersToSort, sortByName, false);
     insertHtmlAtheles(sortByNameReverse.map(generateAthleteTemplate).join(""));
   }
 });
 
-//FUNCION PARA CREAR TABLA DE RANKING DE PAISES 
-let tableMedals = computeData(datos.athletes); //Meto mi funcion en una variable 
+//CREAMOS MEDALLERO DE TOP10 
+let tableMedals = computeData(arrayAthletes, "team"); 
 function topOfMedals(element, array) {
-  let tableBody = document.createElement("tbody"); //accedo a crear el cuerpo de la tabla,contiene a un bloque de filas ( tr )
-
-  for (let i = 0; i < array; i++) { //Con un for recorro mi var que tiene el objeto hasta la posicion 9 
-   const posititionTable = tableMedals[i]; //
-
+  let tableBody = document.createElement("tbody"); 
+  for (let i = 0; i < array; i++) { 
+    const posititionTable = tableMedals[i]; 
     let row = document.createElement("tr");
-
     let td = document.createElement("td");
     td.innerHTML = posititionTable.team;
     row.appendChild(td);
-
     td = document.createElement("td");
     td.innerHTML = posititionTable.gold;
     row.appendChild(td);
-
     td = document.createElement("td");
     td.innerHTML = posititionTable.silver;
     row.appendChild(td);
-
     td = document.createElement("td");
     td.innerHTML = posititionTable.bronce;
     row.appendChild(td);
-
     td = document.createElement("td");
     td.innerHTML = posititionTable.total;
     row.appendChild(td);
-
     tableBody.appendChild(row);
   }
   element.appendChild(tableBody);
@@ -236,18 +211,15 @@ topOfMedals(tableRankingTeam, 10);
 
 button.addEventListener("click", function () {
   topOfMedals(modalTable, tableMedals.length);
-  document.getElementById("containerFatherMain").style.display = "none"; //oculto toda la seccion de inicio 
-  document.getElementById("bigTable").style.display = "block"; //le indico que muestre la tabla 
-}); //al dar clic se invoca la funcion de la tabla grande donde estan todas las medallas 
+  document.getElementById("containerFatherMain").style.display = "none"; 
+  document.getElementById("bigTable").style.display = "block"; 
+}); 
 
+const buttonClose = document.getElementById("close"); 
+buttonClose.addEventListener("click", reload); 
 
-const buttonClose = document.getElementById("close"); //accedo a boton de cerrar
-buttonClose.addEventListener("click", reload); //Le indico al boton close que ejecute la funcion que refresca la pagina.  
-
-//FUNCION PARA LOS ATLETAS DESTACADOS
-let featuredAthletes = computeDataTwo(datos.athletes);
-        //console.log(featuredAthletes);
-
+//ATLETAS DESTACADOS
+let featuredAthletes = computeData(arrayAthletes, "name");
 function generateTemplate(element, position) {
   const imageMedal = document.createElement("div");
   imageMedal.classList.add("imageMedal");
@@ -263,6 +235,7 @@ function generateTemplate(element, position) {
     " " +
     featuredAthletes[position].bronce;
   element.appendChild(medalfeatureAthlete);
+
   const nameAthlete = document.createElement("p");
   nameAthlete.classList.add("nameAthlete");
   nameAthlete.innerHTML = featuredAthletes[position].name;
@@ -279,12 +252,10 @@ generateTemplate(document.getElementById("eight"), 7);
 generateTemplate(document.getElementById("nine"), 8);
 generateTemplate(document.getElementById("ten"), 9);
 
-//FUNCION PARA EL BOTON DE VOLVER ARRIBA
-function goTop(pxPantalla) { //Parametro de cuanto px de pantalla quiero que aparezca el boton
-  window.addEventListener("scroll", () => { //agregamos un evento escroll a la ventanda del navegador
-
+//BOTON DE VOLVER ARRIBA
+function goTop(pxPantalla) { 
+  window.addEventListener("scroll", () => { 
     let scroll = document.documentElement.scrollTop;
-    //console.log(scroll);
     let buttonTop = document.getElementById("btnArriba");
     if (scroll > pxPantalla) {
       buttonTop.style.right = 2 + "rem";
@@ -294,3 +265,8 @@ function goTop(pxPantalla) { //Parametro de cuanto px de pantalla quiero que apa
   });
 }
 goTop(1000);
+
+//REFRESCA LA PAG CON EL BOTON DE CERRAR 
+function reload() {
+  location.reload();
+}
