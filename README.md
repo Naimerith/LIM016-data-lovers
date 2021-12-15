@@ -56,9 +56,9 @@ Esta dirijido a aquellos usuarios aficionados al deporte, reporteros, periodista
 
 ▶ Hitoria de usuario #4: Yo como deportista, quiero conocer los deportes y sus disciplinas, la cantidad de ganadores de medallas por disciplinas y ordenar  la información de los atletas que participaron.
 
-▶ Hitoria de usuario #6: Yo como usuario quiero tenener un boton donde le pueda dar click para regresar a la pagina principal.
+▶ Hitoria de usuario #5: Yo como usuario quiero tenener un boton donde le pueda dar click para regresar a la pagina principal.
 
-▶ Hitoria de usuario #7: Yo como usuario, quiero un boton donde pueda buscar a todos los atletas
+▶ Hitoria de usuario #6: Yo como usuario, quiero un boton donde pueda buscar a todos los atletas
 
 ## 3. Diseño de la Interfaz de Usuario
 Se emplearon las tecnologías HTML, CSS y JS para el desarrollo de la aplicación siguiendo los prototipos diseñados. 
